@@ -78,10 +78,8 @@ h1 {
     text-align:center;
 }
 
-
-
-.topcoat-button {
-    font-size:24px;
+#main_page_button {
+    font-size: 36px;
 }
 
 .event {
