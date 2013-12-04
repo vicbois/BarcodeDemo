@@ -53,6 +53,7 @@ var app = {
 
     scan: function() {
         console.log('scanning');
+        var scannedItem;
         
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
@@ -61,7 +62,8 @@ var app = {
             alert("We got a barcode\n" + 
             "Result: " + result.text + "\n" + 
             "Format: " + result.format + "\n" + 
-            "Cancelled: " + result.cancelled);  
+            "Cancelled: " + result.cancelled);
+            scannedItem = result.text;
 
            console.log("Scanner result: \n" +
                 "text: " + result.text + "\n" +
@@ -69,6 +71,14 @@ var app = {
                 "cancelled: " + result.cancelled + "\n");
             document.getElementById("info").innerHTML = result.text;
             console.log(result);
+
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "scandata.xml", false);
+            xmlhttp.send();
+            xmlDoc = xmlhttp.responseXML;
+
+
+
 
         }, function (error) { 
             console.log("Scanning failed: ", error); 
