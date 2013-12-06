@@ -69,15 +69,10 @@ var app = {
                 "text: " + result.text + "\n" +
                 "format: " + result.format + "\n" +
                 "cancelled: " + result.cancelled + "\n");
-            document.getElementById("info").innerHTML = result.text;
+            document.getElementById("barcode").innerHTML = result.text;
             console.log(result);
 
-            xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", "scandata.xml", false);
-            xmlhttp.send();
-            xmlDoc = xmlhttp.responseXML;
-
-
+            
 
 
         }, function (error) { 
