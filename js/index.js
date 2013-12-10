@@ -78,32 +78,35 @@ var app = {
         } );
     },
 
-    /*
-    $.soap({
-        url: 'http://www.merchantsoftware.biz:8082',
-        method: 'goPOS_CountItemLookUp',
+    send: function() {
 
-        data: {
-            LPOSSerial: '8501204',
-            barcode: '7572019385'
-        },
+        $.soap({
+            url: 'http://www.merchantsoftware.biz:8082',
+            method: 'goPOS_CountItemLookUp',
 
-        namespaceQualifier: 'msc',
-        namespaceURL: 'http://merchantsoft.com',
+            data: {
+                LPOSSerial: '8501204',
+                barcode: '7572019385'
+            },
 
-        success: function (soapResponse) {
-            // do stuff with soapResponse
-            // if you want to have the response as JSON use soapResponse.toJSON();
-            // or soapResponse.toString() to get XML string
-            // or soapResponse.toXML() to get XML DOM
+            namespaceQualifier: 'msc',
+            namespaceURL: 'http://merchantsoft.com',
 
-            document.getElementByID("response").innerHTML = soapResponse.toString();
-        },
-        error: function (SOAPResponse) {
-            // show error
-        }
-    }); */
+            success: function (soapResponse) {
+                // do stuff with soapResponse
+                // if you want to have the response as JSON use soapResponse.toJSON();
+                // or soapResponse.toString() to get XML string
+                // or soapResponse.toXML() to get XML DOM
 
+                document.getElementByID("response").innerHTML = soapResponse.toString();
+            },
+            error: function (SOAPResponse) {
+                // show error
+            }
+        }); 
+
+    }
+    
 
     encode: function() {
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
