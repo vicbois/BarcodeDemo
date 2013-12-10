@@ -59,12 +59,6 @@ var app = {
 
         scanner.scan( function (result) { 
 
-            alert("We got a barcode\n" + 
-            "Result: " + result.text + "\n" + 
-            "Format: " + result.format + "\n" + 
-            "Cancelled: " + result.cancelled);
-            scannedItem = result.text;
-
            console.log("Scanner result: \n" +
                 "text: " + result.text + "\n" +
                 "format: " + result.format + "\n" +
@@ -72,7 +66,30 @@ var app = {
             document.getElementById("barcode").value = result.text;
             console.log(result);
 
-            
+            $.soap({
+                url: 'http://www.merchantsoftware.biz:8082',
+                method: 'goPOS_CountItemLookUp',
+
+                data: {
+                    LPOSSerial: '8501204',
+                    barcode: '7572019385'
+                },
+
+                namespaceQualifier: 'msc',
+                namespaceURL: 'http://merchantsoft.com',
+
+                success: function (soapResponse) {
+                    // do stuff with soapResponse
+                    // if you want to have the response as JSON use soapResponse.toJSON();
+                    // or soapResponse.toString() to get XML string
+                    // or soapResponse.toXML() to get XML DOM
+
+                    document.getElementByID("response").innerHTML = soapResponse.toString();
+                },
+                error: function (SOAPResponse) {
+                    // show error
+                }
+            });
 
 
         }, function (error) { 
