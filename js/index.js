@@ -66,36 +66,38 @@ var app = {
             document.getElementById("barcode").value = result.text;
             console.log(result);
 
-            $.soap({
-                url: 'http://www.merchantsoftware.biz:8082',
-                method: 'goPOS_CountItemLookUp',
-
-                data: {
-                    LPOSSerial: '8501204',
-                    barcode: '7572019385'
-                },
-
-                namespaceQualifier: 'msc',
-                namespaceURL: 'http://merchantsoft.com',
-
-                success: function (soapResponse) {
-                    // do stuff with soapResponse
-                    // if you want to have the response as JSON use soapResponse.toJSON();
-                    // or soapResponse.toString() to get XML string
-                    // or soapResponse.toXML() to get XML DOM
-
-                    document.getElementByID("response").innerHTML = soapResponse.toString();
-                },
-                error: function (SOAPResponse) {
-                    // show error
-                }
-            });
-
 
         }, function (error) { 
             console.log("Scanning failed: ", error); 
         } );
     },
+
+    /*
+    $.soap({
+        url: 'http://www.merchantsoftware.biz:8082',
+        method: 'goPOS_CountItemLookUp',
+
+        data: {
+            LPOSSerial: '8501204',
+            barcode: '7572019385'
+        },
+
+        namespaceQualifier: 'msc',
+        namespaceURL: 'http://merchantsoft.com',
+
+        success: function (soapResponse) {
+            // do stuff with soapResponse
+            // if you want to have the response as JSON use soapResponse.toJSON();
+            // or soapResponse.toString() to get XML string
+            // or soapResponse.toXML() to get XML DOM
+
+            document.getElementByID("response").innerHTML = soapResponse.toString();
+        },
+        error: function (SOAPResponse) {
+            // show error
+        }
+    }); */
+
 
     encode: function() {
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
