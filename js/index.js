@@ -101,7 +101,7 @@ var app = {
                 document.getElementByID("response").innerHTML = soapResponse.toString();
             },
             error: function (SOAPResponse) {
-                // show error
+                document.getElementByID("response").innerHTML = "Error";
             }
         }); 
 
