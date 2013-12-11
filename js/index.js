@@ -63,7 +63,6 @@ var app = {
             "Result: " + result.text + "\n" +
             "Format: " + result.format + "\n" +
             "Cancelled: " + result.cancelled);
-            scannedItem = result.text;
             document.getElementById("barcode").value = result.text;
 
             console.log("Scanner result: \n" +
@@ -106,7 +105,7 @@ var app = {
             }
         }); 
 
-    }
+    },
     
 
     encode: function() {
