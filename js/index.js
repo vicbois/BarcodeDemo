@@ -91,6 +91,7 @@ var app = {
 
             namespaceQualifier: 'msc',
             namespaceURL: 'http://merchantsoft.com',
+            enableLogging: true,
 
             success: function (soapResponse) {
                 // do stuff with soapResponse
@@ -98,10 +99,10 @@ var app = {
                 // or soapResponse.toString() to get XML string
                 // or soapResponse.toXML() to get XML DOM
 
-                document.getElementByID("response").innerHTML = soapResponse.toString();
+                document.getElementById("response").innerHTML = soapResponse.toString();
             },
             error: function (SOAPResponse) {
-                document.getElementByID("response").innerHTML = "Error";
+                document.getElementById("response").innerHTML = "Error";
             }
         }); 
 
