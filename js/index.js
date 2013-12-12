@@ -89,8 +89,6 @@ var app = {
                 barcode: '7572019385'
             },
 
-            namespaceQualifier: 'msc',
-            namespaceURL: 'http://merchantsoft.com',
             enableLogging: true,
             appendMethodToURL: false,
 
