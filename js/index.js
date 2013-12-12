@@ -86,7 +86,7 @@ var app = {
 
             data: {
                 LPOSSerial: '8501204',
-                barcode: '7572019385'
+                barcode: '075720193851'
             },
 
             enableLogging: true,
