@@ -92,6 +92,7 @@ var app = {
             namespaceQualifier: 'msc',
             namespaceURL: 'http://merchantsoft.com',
             enableLogging: true,
+            appendMethodToURL: false,
 
             success: function (soapResponse) {
                 // do stuff with soapResponse
