@@ -59,10 +59,6 @@ var app = {
 
         scanner.scan( function (result) { 
 
-            alert("We got a barcode\n" +
-            "Result: " + result.text + "\n" +
-            "Format: " + result.format + "\n" +
-            "Cancelled: " + result.cancelled);
             document.getElementById("barcode").value = result.text;
 
             console.log("Scanner result: \n" +
@@ -80,13 +76,16 @@ var app = {
 
     send: function() {
 
-        $.soap({
+        if (document.getElementById("barcode").value == '') {
+            alert("Enter a barcode!");
+
+        } else $.soap({
             url: 'http://www.merchantsoftware.biz:8082',
             method: 'goPOS_CountItemLookUp',
 
             data: {
                 LPOSSerial: '8501204',
-                barcode: '075720193851'
+                barcode: document.getElementById("barcode").value
             },
 
             enableLogging: true,
