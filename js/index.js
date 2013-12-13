@@ -103,7 +103,8 @@ var app = {
                 }
             },
             error: function (SOAPResponse) {
-                document.getElementById("debug").innerHTML = SOAPResponse.toString();
+                document.getElementById("debug").innerHTML = "Error";
+                document.getElementbyId("response").innerHTML = SOAPResponse.toString();
             }
         }); 
 
