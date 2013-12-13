@@ -29,7 +29,6 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         document.getElementById('scan').addEventListener('click', this.scan, false);
         document.getElementById('send').addEventListener('click', this.send, false);
-        document.getElementById('encode').addEventListener('click', this.encode, false);
     },
 
     // deviceready Event Handler
@@ -89,7 +88,7 @@ var app = {
             },
 
             enableLogging: true,
-            appendMethodToURL: false,
+            appendMethodToURL: false,well, 
 
             success: function (soapResponse) {
                 // do stuff with soapResponse
@@ -97,25 +96,19 @@ var app = {
                 // or soapResponse.toString() to get XML string
                 // or soapResponse.toXML() to get XML DOM
 
-                document.getElementById("response").innerHTML = soapResponse.toString();
+                parseResponse(soapResponse.toXML());
             },
             error: function (SOAPResponse) {
-                document.getElementById("response").innerHTML = "Error";
+                document.getElementById("response").innerHTML = "Communication error";
             }
         }); 
 
     },
-    
 
-    encode: function() {
-        var scanner = cordova.require("cordova/plugin/BarcodeScanner");
-
-        scanner.encode(scanner.Encode.TEXT_TYPE, "http://www.nhl.com", function(success) {
-            alert("encode success: " + success);
-          }, function(fail) {
-            alert("encoding failed: " + fail);
-          }
-        );
+    parseResponse: function(SOAPResponse) {
+        if(SOAPResponse.getElementsByTagName("license")[0].childNodes[0].nodeValue == "YES") {
+            document.getElementById("message").innterHTML = "License verified";
+        }
 
     }
 
