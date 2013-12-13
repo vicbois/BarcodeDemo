@@ -88,7 +88,7 @@ var app = {
             },
 
             enableLogging: true,
-            appendMethodToURL: false,well, 
+            appendMethodToURL: false, 
 
             success: function (soapResponse) {
                 // do stuff with soapResponse
