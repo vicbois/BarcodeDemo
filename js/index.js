@@ -103,7 +103,7 @@ var app = {
                 }
             },
             error: function (SOAPResponse) {
-                document.getElementById("debug").innerHTML = "Communication error\n" + SOAPResponse.toString();
+                document.getElementById("debug").innerHTML = SOAPResponse.toString();
             }
         }); 
 
