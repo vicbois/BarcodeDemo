@@ -105,11 +105,11 @@ var app = {
 
     },
 
-    parseResponse: function(SOAPResponse) {
-        if(SOAPResponse.getElementsByTagName("license")[0].childNodes[0].nodeValue == "YES") {
-            document.getElementById("message").innterHTML = "License verified";
-        }
+};
 
+function parseResponse(SOAPResponse) {
+    if(SOAPResponse.getElementsByTagName("license")[0].childNodes[0].nodeValue == "YES") {
+        document.getElementById("message").innterHTML = "License verified";
     }
 
-};
+}
