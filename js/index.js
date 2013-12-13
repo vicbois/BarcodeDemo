@@ -96,7 +96,9 @@ var app = {
                 // or soapResponse.toString() to get XML string
                 // or soapResponse.toXML() to get XML DOM
 
-                parseResponse(soapResponse.toXML());
+                if (SOAPResponse.toXML().getElementsByTagName("license")[0].childNodes[0].nodeValue == "YES") {
+                    document.getElementById("message").innterHTML = "License verified";
+                }
             },
             error: function (SOAPResponse) {
                 document.getElementById("response").innerHTML = "Communication error";
@@ -106,10 +108,3 @@ var app = {
     },
 
 };
-
-function parseResponse(SOAPResponse) {
-    if(SOAPResponse.getElementsByTagName("license")[0].childNodes[0].nodeValue == "YES") {
-        document.getElementById("message").innterHTML = "License verified";
-    }
-
-}
