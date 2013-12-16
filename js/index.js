@@ -97,10 +97,14 @@ var app = {
                 // or soapResponse.toString() to get XML string
                 // or soapResponse.toXML() to get XML DOM
 
-                document.getElementById("message").innerHTML = soapResponse.toString();
+                document.getElementById("debug").innerHTML = SOAPResponse.toString();
+
+                if (SOAPResponse.toXML().getElementsByTagName("license")[0].childNodes[0].nodeValue == "YES") {
+                    document.getElementById("message").innterHTML = "License verified";
+                }
             },
             error: function (SOAPResponse) {
-                document.getElementById("message").innerHTML = "Error";
+                document.getElementById("debug").innerHTML = "Error";
             }
         });
 
