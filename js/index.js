@@ -104,20 +104,9 @@ var app = {
             },
             error: function (SOAPResponse) {
                 document.getElementById("debug").innerHTML = "Error";
-                document.getElementbyId("message").innerHTML = SOAPResponse.toString();
+                document.getElementById("message").innerHTML = SOAPResponse.toString();
             }
         }); 
-
-    },
-
-    encode: function() {
-        var scanner = cordova.require("cordova/plugin/BarcodeScanner");
-
-        scanner.encode(scanner.Encode.TEXT_TYPE, "http://www.nhl.com", function(success) {
-            alert("encode success: " + success);
-        }, function(fail) {
-            alert("encoding failed: " + fail);
-        });
 
     }
 
