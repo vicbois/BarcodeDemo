@@ -18,29 +18,30 @@
  */
 var app = {
     // Application Constructor
-    initialize: function() {
+    initialize: function () {
         this.bindEvents();
     },
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // `load`, `deviceready`, `offline`, and `online`.
-    bindEvents: function() {
+    bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         document.getElementById('scan').addEventListener('click', this.scan, false);
         document.getElementById('send').addEventListener('click', this.send, false);
+        document.getElementById('encode').addEventListener('click', this.encode, false);
     },
 
     // deviceready Event Handler
     //
     // The scope of `this` is the event. In order to call the `receivedEvent`
     // function, we must explicity call `app.receivedEvent(...);`
-    onDeviceReady: function() {
+    onDeviceReady: function () {
         app.receivedEvent('deviceready');
     },
 
     // Update DOM on a Received Event
-    receivedEvent: function(id) {
+    receivedEvent: function (id) {
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
@@ -51,12 +52,12 @@ var app = {
         console.log('Received Event: ' + id);
     },
 
-    scan: function() {
+    scan: function () {
         console.log('scanning');
-        
+
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
-        scanner.scan( function (result) { 
+        scanner.scan(function (result) {
 
             document.getElementById("barcode").value = result.text;
 
@@ -64,16 +65,16 @@ var app = {
                 "text: " + result.text + "\n" +
                 "format: " + result.format + "\n" +
                 "cancelled: " + result.cancelled + "\n");
-           
+
             console.log(result);
 
 
-        }, function (error) { 
-            console.log("Scanning failed: ", error); 
-        } );
+        }, function (error) {
+            console.log("Scanning failed: ", error);
+        });
     },
 
-    send: function() {
+    send: function () {
 
         if (document.getElementById("barcode").value == '') {
             alert("Enter a barcode!");
@@ -88,7 +89,7 @@ var app = {
             },
 
             enableLogging: true,
-            appendMethodToURL: false, 
+            appendMethodToURL: false,
 
             success: function (soapResponse) {
                 // do stuff with soapResponse
@@ -96,17 +97,25 @@ var app = {
                 // or soapResponse.toString() to get XML string
                 // or soapResponse.toXML() to get XML DOM
 
-                document.getElementById("debug").innerHTML = SOAPResponse.toString();
-
-                if (SOAPResponse.toXML().getElementsByTagName("license")[0].childNodes[0].nodeValue == "YES") {
-                    document.getElementById("message").innterHTML = "License verified";
-                }
+                document.getElementById("message").innerHTML = soapResponse.toString();
             },
             error: function (SOAPResponse) {
-                document.getElementById("debug").innerHTML = "Error";
-                document.getElementById("message").innerHTML = SOAPResponse.toString();
+                document.getElementById("message").innerHTML = "Error";
             }
-        }); 
+        });
+
+    },
+
+
+    encode: function () {
+        var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+
+        scanner.encode(scanner.Encode.TEXT_TYPE, "http://www.nhl.com", function (success) {
+            alert("encode success: " + success);
+        }, function (fail) {
+            alert("encoding failed: " + fail);
+        }
+        );
 
     }
 
