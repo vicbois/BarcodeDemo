@@ -98,7 +98,7 @@ var app = {
                 // or soapResponse.toXML() to get XML DOM
 
                 document.getElementById("debug").innerHTML = soapResponse.toString();
-                decoument.getElementById("message").innterHTML = SOAPResponse.toXML().getElementsByTagName("license")[0].childNodes[0].nodeValue
+                document.getElementById("message").innterHTML = SOAPResponse.toXML().getElementsByTagName("license")[0].childNodes[0].nodeValue
             },
             error: function (SOAPResponse) {
                 document.getElementById("message").innerHTML = "Error";
