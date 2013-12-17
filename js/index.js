@@ -99,7 +99,10 @@ var app = {
 
                 document.getElementById("debug").innerHTML = soapResponse.toString();
                 if (soapResponse.toXML().getElementsByTagName("FoundItem")[0].childNodes[0].nodeValue == "YES") {
+
                     document.getElementById("message").innerHTML = "Found Item!";
+                    document.getElementById("brand").innerHTML = soapResponse.toXML().getElementsByTagName("Brand")[0].childNodes[0].nodeValue;
+
                 } else document.getElementById("message").innerHTML = "Item not found!";
             },
             error: function (SOAPResponse) {
