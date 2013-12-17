@@ -97,7 +97,6 @@ var app = {
                 // or soapResponse.toString() to get XML string
                 // or soapResponse.toXML() to get XML DOM
 
-                document.getElementById("debug").innerHTML = soapResponse.toString();
                 if (soapResponse.toXML().getElementsByTagName("FoundItem")[0].childNodes[0].nodeValue == "YES") {
 
                     document.getElementById("message").innerHTML = "Found Item!";
