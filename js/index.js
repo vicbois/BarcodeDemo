@@ -28,7 +28,7 @@ var app = {
     bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         document.getElementById('scan').addEventListener('click', this.scan, false);
-        document.getElementById('send').addEventListener('click', this.send, false);
+        document.getElementById('sendBarcode').addEventListener('click', this.sendBarcode, false);
         document.getElementById('encode').addEventListener('click', this.encode, false);
     },
 
@@ -74,7 +74,7 @@ var app = {
         });
     },
 
-    send: function () {
+    sendBarcode: function () {
 
         if (document.getElementById("barcode").value == '') {
             alert("Enter a barcode!");
@@ -114,6 +114,46 @@ var app = {
 
     },
 
+    sendCount: function() {
+
+        var replace = "REPLACE";
+        if(document.getElementById("add").checked) replace = "ADD";
+
+        if (document.getElementById("count").value == '') {
+            alert("Enter a count!");
+
+        } else $.soap({
+            url: 'http://www.merchantsoftware.biz:8082',
+            method: 'goPOS_PostCount',
+
+            data: {
+                LPOSSerial: '8501204',
+                barcode: document.getElementById("barcode").value,
+                countQOH: document.getElementById("count").value,
+                countAction: replace
+            },
+
+            enableLogging: true,
+            appendMethodToURL: false,
+
+            success: function (soapResponse) {
+                // do stuff with soapResponse
+                // if you want to have the response as JSON use soapResponse.toJSON();
+                // or soapResponse.toString() to get XML string
+                // or soapResponse.toXML() to get XML DOM
+
+                if (soapResponse.toXML().getElementsByTagName("success")[0].childNodes[0].nodeValue == "SUCCESS") {
+
+                    alert("Item updated successfully!\n Old Quantity: " + soapResponse.toXML().getElementsByTagName("oldQOH")[0].childNodes[0].nodeValue
+                        + "\nNew Quantity: " + soapResponse.toXML().getElementsByTagName("newQOH")[0].childNodes[0].nodeValue);
+
+                } else document.getElementById("message").innerHTML = "Failed to update Count";
+            },
+            error: function (SOAPResponse) {
+                document.getElementById("message").innerHTML = "Error";
+            }
+        });
+    },
 
     encode: function () {
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");

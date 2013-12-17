@@ -36,7 +36,7 @@
             <p> Enter a barcode:</p>
             <input id="barcode" type="number" name="barcode" value="" /><button class="main-button" id="scan">Scan</button>
             <br />
-            <button class="main-button" id="send">Submit</button>
+            <button class="main-button" id="sendBarcode">Submit</button>
 
             <p id="debug"></p>
             <div id="response">
@@ -49,8 +49,8 @@
 
             <p>New quantity:</p>
             <input id="count" type="number" value="" /><br />
-            <input id="add" type="radio" value="Add to existing quantity" /><br />
-            <input id="replace" type="radio" value="Replace existing quantity" /><br />
+            <p><input id="add" type="radio" name="add_replace" />Add to existing quantity</p>
+            <p><input id="replace" type="radio" name="add_replace" checked="checked" />Replace existing quantity</p><br />
 
 
         </div>
