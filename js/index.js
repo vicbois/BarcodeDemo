@@ -100,7 +100,7 @@ var app = {
                 if (soapResponse.toXML().getElementsByTagName("FoundItem")[0].childNodes[0].nodeValue == "YES") {
 
                     document.getElementById("message").innerHTML = "Found Item!";
-                    document.getElementById("brand").innerHTML = soapResponse.toXML().getElementsByTagName("Brand")[0].childNodes[0].nodeValue;
+                    document.getElementById("brand").innerHTML = soapResponse.toXML().getElementsByTagName("brand")[0].childNodes[0].nodeValue;
 
                 } else document.getElementById("message").innerHTML = "Item not found!";
             },
