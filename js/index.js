@@ -98,7 +98,9 @@ var app = {
                 // or soapResponse.toXML() to get XML DOM
 
                 document.getElementById("debug").innerHTML = soapResponse.toString();
-                document.getElementById("message").innerHTML = soapResponse.toXML().getElementsByTagName("License")[0].childNodes[0].nodeValue;
+                if (soapResponse.toXML().getElementsByTagName("FoundItem")[0].childNodes[0].nodeValue == "YES") {
+                    document.getElementById("message").innerHTML = "Found Item!";
+                } else document.getElementById("message").innerHTML = "Item not found!";
             },
             error: function (SOAPResponse) {
                 document.getElementById("message").innerHTML = "Error";
