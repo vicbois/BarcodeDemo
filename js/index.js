@@ -145,8 +145,14 @@ var app = {
 
                 if (soapResponse.toXML().getElementsByTagName("success")[0].childNodes[0].nodeValue == "SUCCESS") {
 
-                    alert("Item updated successfully!\n Old Quantity: " + soapResponse.toXML().getElementsByTagName("oldQOH")[0].childNodes[0].nodeValue
+                    alert("Item updated successfully!\nOld Quantity: " + soapResponse.toXML().getElementsByTagName("oldQOH")[0].childNodes[0].nodeValue
                         + "\nNew Quantity: " + soapResponse.toXML().getElementsByTagName("newQOH")[0].childNodes[0].nodeValue);
+
+                    document.getElementById("message").innerHTML = "";
+                    document.getElementById("brand").innerHTML = "Brand: ";
+                    document.getElementById("description").innerHTML = "Description: ";
+                    document.getElementById("size").innerHTML = "Size: ";
+                    document.getElementById("QOH").innerHTML = "On Hand: ";
 
                 } else document.getElementById("message").innerHTML = "Failed to update Count";
             },
