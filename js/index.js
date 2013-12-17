@@ -101,6 +101,9 @@ var app = {
 
                     document.getElementById("message").innerHTML = "Found Item!";
                     document.getElementById("brand").innerHTML += soapResponse.toXML().getElementsByTagName("brand")[0].childNodes[0].nodeValue;
+                    document.getElementById("description").innerHTML += soapResponse.toXML().getElementsByTagName("description")[0].childNodes[0].nodeValue;
+                    document.getElementById("size").innerHTML += soapResponse.toXML().getElementsByTagName("size")[0].childNodes[0].nodeValue;
+                    document.getElementById("QOH").innerHTML += soapResponse.toXML().getElementsByTagName("QOH")[0].childNodes[0].nodeValue;
 
                 } else document.getElementById("message").innerHTML = "Item not found!";
             },
