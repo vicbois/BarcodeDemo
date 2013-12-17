@@ -33,8 +33,8 @@
                 <p class="event received">Device is Ready</p>
             </div>
 
-            <input id="barcode" type="number" name="barcode" value="" />
-            <button class="main-button" id="scan">Scan Barcode</button>
+            <p> Enter a barcode:</p>
+            <input id="barcode" type="number" name="barcode" value="" /><button class="main-button" id="scan">Scan</button>
             <br />
             <button class="main-button" id="send">Submit</button>
 
@@ -46,6 +46,12 @@
                 <p id="size">Size: </p>
                 <p id="QOH">On Hand: </p>
             </div>
+
+            <p>New quantity:</p>
+            <input id="count" type="number" value="" /><br />
+            <input id="add" type="radio" value="Add to existing quantity" /><br />
+            <input id="replace" type="radio" value="Replace existing quantity" /><br />
+
 
         </div>
         <script type="text/javascript" src="cordova.js"></script>
