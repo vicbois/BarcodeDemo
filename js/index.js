@@ -130,7 +130,7 @@ var app = {
             data: {
                 LPOSSerial: '8501204',
                 barcode: document.getElementById("barcode").value,
-                countQOH: document.getElementById("count").value,
+                countQOH: document.getElementById("count").value,I 
                 countAction: replace
             },
 
@@ -148,13 +148,14 @@ var app = {
                     alert("Item updated successfully!\nOld Quantity: " + soapResponse.toXML().getElementsByTagName("oldQOH")[0].childNodes[0].nodeValue
                         + "\nNew Quantity: " + soapResponse.toXML().getElementsByTagName("newQOH")[0].childNodes[0].nodeValue);
 
+                    document.getElementById("barcode").value = "";
                     document.getElementById("message").innerHTML = "";
                     document.getElementById("brand").innerHTML = "Brand: ";
                     document.getElementById("description").innerHTML = "Description: ";
                     document.getElementById("size").innerHTML = "Size: ";
                     document.getElementById("QOH").innerHTML = "On Hand: ";
 
-                } else document.getElementById("message").innerHTML = "Failed to update Count";
+                } else document.getElementById("message").innerHTML = "Failed to update item";
             },
             error: function (SOAPResponse) {
                 document.getElementById("message").innerHTML = "Error";
